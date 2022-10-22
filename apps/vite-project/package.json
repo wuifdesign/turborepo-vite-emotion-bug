@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "swc ./src/main.tsx"
   },
   "dependencies": {
     "react": "^18.2.0",
