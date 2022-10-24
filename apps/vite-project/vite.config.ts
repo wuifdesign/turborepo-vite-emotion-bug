@@ -48,20 +48,29 @@ function assertDefined<T>(value: T | null | undefined): asserts value is T {
   }
 }
 
+
+function myPlugin() {
+  return {
+    name: 'transform-file',
+
+    api: {
+      reactBabel: (config) => {
+        console.log(config);
+        return config;
+      }
+    }
+  }
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    tsconfigPaths({
-      projects: [
-          './tsconfig.json',
-          '../../packages/ui/tsconfig.json',
-      ]
-    }),
+    myPlugin(),
     react({
       jsxImportSource: "@emotion/react",
-      babel: {
-        plugins: [emotionPlugin],
-      },
+      babel: () => ({
+        configFile: true,
+      }),
     }),
   ]
 })
